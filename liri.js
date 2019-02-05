@@ -13,7 +13,20 @@ var fs = require('fs');
 //    * `movie-this`
 //    * `do-what-it-says`
 
+var getBands = function (concertName){
 
+    axios.get("https://rest.bandsintown.com/artists/" + concertName + "/events?app_id=codingbootcamp").then(
+        function(response){
+        
+        for (var i = 0; i < response.data.length; i ++){
+            console.log(' ');
+            console.log("Name of the venue: " + response.data[i].venue.name);
+            console.log("Venue Location: " + response.data[i].venue.city);
+            console.log("Date of the Event: " + moment(response.data[i].datetime).format('MMMM Do YYYY'));
+            console.log(' -------------- ');
+        }
+    });
+    }
 // Then run a request with axios to the OMDB API with the movie specified
 var doWhatItSays = function () {
     fs.readFile('./random.txt', 'utf8', function (err, data) {
@@ -33,10 +46,11 @@ var getMovie = function (movieName) {
 
     axios.get("http://www.omdbapi.com/?t=" + movieName + "&apikey=trilogy").then(
         function (response) {
+            console.log(' ')
             console.log("Movie Title: " + response.data.Title);
             console.log("Year of Release: " + response.data.Year);
             console.log("IMDB rating: " + response.data.imdbRating);
-            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1]);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
             console.log("Produced in: " + response.data.Country);
             console.log("Movie Language: " + response.data.Language);
             console.log("Movie Plot: " + response.data.Plot);
@@ -61,7 +75,7 @@ var getSpotify = function (songName) {
         }
         var songs = data.tracks.items;
         for (var i = 0; i < songs.length; i++) {
-            console.log[i];
+            console.log(i);
             console.log('artist(s); ' + songs[i].artists.map(artistName));
             console.log('song name: ' + songs[i].name);
             console.log('preview song: ' + songs[i].preview_url);
@@ -91,6 +105,10 @@ var choice = function (userPick, userData) {
 
         case 'do-what-it-says':
             doWhatItSays();
+            break;
+
+        case 'concert-this':
+            getBands(userData);
             break;
 
         default:
