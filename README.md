@@ -10,12 +10,18 @@ All of the tools you need to make the applicaiton run successfully are placed wi
 To get the concert fucntionality the following must be typed into the command line:
 node liri.js concert-this 'Name of chosen artist with quotes'
 
-The output will be the venue the artist is performing at, along with its loaction and date.
+The output will be:
+ The venue the artist is performing at 
+ The location
+ The date
 
 The spotify ability works similarly, with the following input on the commande line:
 node liri.js spotify-this-song 'Name of desired song with quotes'
 
-The output will be however many songs spotify has with this title, along with the artist and a link to preview the song.
+The output will be: 
+Number of songs spotify has with this title
+The artist
+Link to preview the song.
 
 The OMDB functionality works by the following input on the command line:
 
