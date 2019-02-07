@@ -20,6 +20,7 @@ var getBands = function (concertName){
         
         for (var i = 0; i < response.data.length; i ++){
             console.log(' ');
+            console.log(i);
             console.log("Name of the venue: " + response.data[i].venue.name);
             console.log("Venue Location: " + response.data[i].venue.city);
             console.log("Date of the Event: " + moment(response.data[i].datetime).format('MMMM Do YYYY'));
@@ -46,7 +47,9 @@ var getMovie = function (movieName) {
 
     axios.get("http://www.omdbapi.com/?t=" + movieName + "&apikey=trilogy").then(
         function (response) {
-            console.log(' ')
+            
+            console.log(' ');
+            // console.log(i);
             console.log("Movie Title: " + response.data.Title);
             console.log("Year of Release: " + response.data.Year);
             console.log("IMDB rating: " + response.data.imdbRating);
